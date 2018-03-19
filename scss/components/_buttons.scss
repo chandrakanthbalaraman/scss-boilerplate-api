@@ -1,0 +1,118 @@
+
+//Button Variables
+$btn-fon-weight:700;
+$btn-border-radius:3px;
+$btn-border-ellipsis:20px;
+$btn-min-ht: 16px;
+$btn-border-width : 1px;
+
+$btn-pad-y:9px;
+$btn-pad-x:15px;
+
+$btn-pad-sm-y:5px;
+$btn-pad-sm-x:12px;
+$btn-font-size-sm:12px;
+
+$btn-pad-lg-y:12px;
+$btn-pad-lg-x:18px;
+$btn-font-size-lg:30px;
+
+$btn-transition:  color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+%btn-prop{
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  background-image: none;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: none;
+
+}
+/* ========================================================================== */
+/* Button Properties */
+/* ========================================================================== */
+
+.k-btn {
+    // Generates modifier classes for .button@each $theme, $color in 
+    font-size: rem($base-size);
+    padding: em($btn-pad-y,$base-size) em($btn-pad-x,$base-size);
+    font-weight: $btn-fon-weight;
+    line-height: em($btn-min-ht,$base-size);
+    @extend %btn-prop;
+    min-height: em($btn-min-ht,$base-size);
+    border-radius: em($btn-border-radius,$base-size);
+    border:$btn-border-width solid transparent;
+    @include transition($btn-transition);
+    &.animated{
+      overflow:hidden;
+      position: relative;
+      .hide-content{
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        top: 50%;
+        left: 0%;
+        right: auto;
+        transform: scale(1.5);
+        margin-top: -#{em(8px,$base-size)};
+        @include transition($transition-base);
+      }
+      .show-content{
+        position: relative;
+        left: auto;
+        right: auto;
+        opacity: 1;
+        transform: scale(1);
+        @include transition($transition-base);
+      }
+      &:hover{
+        .hide-content{
+          left: 0%;
+          right: auto;
+          opacity: 1;
+          transform: scale(1);
+        }
+        .show-content{
+          left: auto;
+          right: auto;
+          opacity: 0;
+          transform: scale(.75);
+        } 
+      }
+     
+      
+    }
+    @each $theme, $color in $theme-colors {
+      &.k-#{$theme} {
+        @include  btn-color($color, $color);
+      }
+     }
+    
+     @each $theme, $color in $theme-colors {
+      &.k-outline-#{$theme} {
+        @include  btn-outline-color($color);
+      }
+     }
+    
+     &.k-round{
+      border-radius: em($btn-border-ellipsis,$base-size);
+     }
+     &.k-block{
+       display: block;
+       width: 100%;
+    }
+    
+    &.k-lg{
+      font-size:rem($btn-font-size-lg);
+      padding: em($btn-pad-lg-y,$base-size) em($btn-pad-lg-x,$base-size);
+    }
+    
+    &.k-sm{
+      font-size:rem($btn-font-size-sm);
+      padding: em($btn-pad-sm-y,$base-size) em($btn-pad-sm-x,$base-size);
+    }
+}

@@ -1,0 +1,12 @@
+@each $color, $value in colorMap($theme-colors, 10) {
+  .#{$color} { 
+    &::before {
+      content: '#{$value}';
+      @include color-yiq($value);
+      font-family: monospace;
+      float: right;
+      text-transform: uppercase;
+    }
+    background-color: $value;
+  }
+}

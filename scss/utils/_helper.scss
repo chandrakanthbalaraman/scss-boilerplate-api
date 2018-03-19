@@ -1,0 +1,92 @@
+/* ========================================================================== */
+/* Base Properties */
+/* ========================================================================== */
+hr{
+    margin-top: rem(15px);
+    margin-bottom: rem(15px);
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin-bottom: em(10px,$base-size);
+}
+
+/* ========================================================================== */
+/* Color Yip */
+/* ========================================================================== */
+@mixin color-yiq($color, $prop: 'color') {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+  
+    $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+  
+    @if ($yiq >= 150) {
+      #{$prop}: #111;
+    } @else {
+      #{$prop}: #fff;
+    }
+  }
+
+  /* ========================================================================== */
+/* Button Shadow */
+/* ========================================================================== */
+@mixin box-shadow($type: 1){
+    @if($type==none){
+        box-shadow: none
+    }
+    @else{
+        box-shadow: 0 #{2*$type}px #{3*$type}px 0 rgba(34,36,38,.15); 
+    }
+}
+
+
+/* ========================================================================== */
+/* Transition Effect Properties */
+/* ========================================================================== */
+@mixin transition($transition...) {
+    @if length($transition) == 0 {
+      transition: $transition-base;
+    } @else {
+      transition: $transition;
+    }
+  }
+
+/* ========================================================================== */
+/* Opactiy Properties */
+/* ========================================================================== */
+
+@mixin opacity($type) {
+    @if $type >=0 && $type <=1 {
+      opacity: #{$type/10};
+    } @else {
+      opacity: 1;
+    }
+  }
+/* ========================================================================== */
+/* Animated Menu Link */
+/* ========================================================================== */
+.k-link{
+    text-decoration: none;
+    color:inherit;
+    position: relative;
+    padding-bottom: em(2px,$base-size);
+    &.animate{
+      &:before{
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 100%;
+          bottom:0;
+          height:1px;
+          background-color: #222;
+          transition: $transition-base;
+      }
+      &:hover{
+          &:before{
+              right: 0;
+          }
+      }
+    }  
+  } 
+
+ 

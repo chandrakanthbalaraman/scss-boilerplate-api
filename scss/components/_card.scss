@@ -1,0 +1,79 @@
+//Card Properties
+$card-min-width:300px;
+$card-min-height:300px;
+
+$card-two-margin:20px;
+$card-three-margin:18px;
+$card-four-margin:12px;
+$card-five-margin:12px;
+$card-six-margin:10px;
+
+$card-header-size: 24px;
+$card-p-line-ht: 1.5;
+
+$card-body-default-pad-x: 40px;
+$card-body-default-pad-y: 40px;
+
+$card-header-default-pad-x:40px;
+$card-header-default-pad-y:20px;
+
+$card-footer-default-pad-x:40px;
+$card-footer-default-pad-y:20px;
+
+%card-body-padding{
+    padding: em($card-body-default-pad-y,$base-size) em($card-body-default-pad-x,$base-size);
+}
+.card{
+    max-width: 100%;
+    width: em($card-min-width,$base-size);
+    min-height: em($card-min-width,$base-size);
+    position: relative;
+    @include flexbox;
+    @include flex-direction(column);
+    @include box-shadow(3);
+    font-size:rem($base-size);
+    border: 1px solid rgba(34,36,38,.15);
+    float: none;
+    margin: em($card-four-margin,$base-size);
+    &.center{
+        @include justify-content(center);
+        @include align-items(center);
+    }
+    &.card-body{
+        @extend %card-body-padding;
+    }
+    &.card-hover{
+        transition: $transition-base;
+        &:hover{
+            @include box-shadow(8);
+        }
+    }
+    .card-header{
+        padding: em($card-header-default-pad-y,$base-size) em($card-header-default-pad-x,$base-size);
+        border-bottom:$border-width solid #efefef;
+        .card-title{
+            margin-bottom: 0;
+        }
+    }
+    .card-footer{
+        padding: em($card-footer-default-pad-y,$base-size) em($card-footer-default-pad-x,$base-size);
+        border-top:$border-width solid #efefef;
+        
+    }
+    .card-body{
+        @extend %card-body-padding;
+    }
+    @each $theme, $color in $theme-colors{
+        &.card-#{$theme}{
+          @include card-color($color);
+        }
+      }
+    .card-title{
+        font-size: em($card-header-size,$base-size);    
+        margin-bottom: em($global-gutter,$base-size) 
+    }
+    p{
+        line-height: 1.5;
+        text-align: left;
+    }
+}

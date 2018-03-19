@@ -1,0 +1,62 @@
+.grid{
+    @include flexbox;
+    @include flex-direction(row);
+    margin: -#{em($card-four-margin,$base-size)};
+    &.resp{
+        @include flex-wrap(wrap);
+        &.four{
+            > *{
+                font-size:rem($base-size);
+                @include flex(0,0,calc(25% - #{em($card-four-margin,$base-size) * 2}));
+                margin: em($card-four-margin,$base-size);
+            }
+        }
+    }
+    
+}
+
+@media screen and (min-width:600px) and (max-width:800px){
+	.grid{
+        &.resp{
+            &.four{
+                > *{
+                    font-size:rem($base-size);
+                    @include flex(0,0,calc(50% - #{em($card-four-margin,$base-size) * 2}));
+                    margin: em($card-four-margin,$base-size);
+                }
+            }
+        }
+        
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:599px){
+	.grid{
+        &.resp{
+            &.four{
+                > *{
+                    font-size:rem($base-size);
+                    @include flex(0,0,calc(100% - #{em($card-four-margin,$base-size) * 2}));
+                    margin: em($card-four-margin,$base-size);
+                }
+            }
+        }
+        
+    }
+}
+
+@media screen and (min-width:801px) and (max-width:1000px){
+	.grid{
+        &.resp{
+            &.four{
+                > *{
+                    font-size:rem($base-size);
+                    @include flex(0,0,calc(50% - #{em($card-four-margin,$base-size) * 2}));
+                    margin: em($card-four-margin,$base-size);
+                }
+            }
+        }
+        
+    }
+    
+}
