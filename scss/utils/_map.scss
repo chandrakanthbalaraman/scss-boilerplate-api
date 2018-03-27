@@ -1,8 +1,9 @@
 /* ========================================================================== */
 /* Theme ColorMaps */
 /* ========================================================================== */
+$theme-colors: () !default;
 
-$theme-colors: (
+$theme-colors: map-merge((
   "primary":    $primary,
   "secondary":  $secondary,
   "success":    $success,
@@ -11,5 +12,5 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark
-);
+),$theme-colors);
 
